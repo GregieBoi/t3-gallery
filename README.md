@@ -1,4 +1,4 @@
-# T3 Gllery
+# T3 Gallery
 
 ##TODO
 
@@ -8,7 +8,7 @@
 - [x] Actually set up a database (vercel postgres)
 - [x] Attach database to ui
 - [x] Add Authentication (w/ clerk)
-- [ ] Add image upload
+- [x] Add image upload
 - [ ] "taint" the server only
 - [ ] Use Next/Image component
 - [ ] Error management (w/ Sentry)
