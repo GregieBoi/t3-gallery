@@ -1,5 +1,6 @@
 import { clerkClient } from "@clerk/nextjs/server";
-import { getImage } from "~/server/queries";
+import { deleteImage, getImage } from "~/server/queries";
+import { Button } from "./ui/button";
 
 export default async function FullPageImageView(props: {photoId: number}) {
 
@@ -15,14 +16,29 @@ export default async function FullPageImageView(props: {photoId: number}) {
         <div className="w-48 flex flex-col flex-shrink-0 border-l">
             <div className="text-lg border-b text-center p-2">{image.name}</div>
 
-            <div className="flex flex-col p-2">
+            <div className="p-2">
                 <span>Uploaded By:</span>
                 <span>{uploaderInfo.fullName}</span>
             </div>
 
-            <div className="flex flex-col p-2">
+            <div className="p-2">
                 <span>Uploaded On:</span>
                 <span>{image.createdAt.toLocaleDateString()}</span>
+            </div>
+
+            <div className="p-2 text-center">
+                <form action={async () => {
+                    "use server";
+
+                    const idAsNumber = Number(image.id);
+
+                    await deleteImage(idAsNumber)
+                }}
+                >
+                    <Button type="submit" variant="destructive">
+                        Delete
+                    </Button>
+                </form>
             </div>
         </div>
     </div>
